@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naukri Auto Apply - Job Application Automation Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .warning-box strong {
+            color: #856404;
+        }
+
+        .info-box {
+            background: #d1ecf1;
+            border-left: 4px solid #0dcaf0;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .info-box strong {
+            color: #055160;
+        }
+
+        .code-section {
+            margin-bottom: 30px;
+        }
+
+        .code-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .code-box {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            position: relative;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        .copy-btn.copied {
+            background: #28a745;
+        }
+
+        .steps {
+            margin-top: 30px;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h3 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .step-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            color: #d63384;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .feature {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .feature h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .feature p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .code-box {
+                font-size: 12px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Naukri Auto Apply Script</h1>
+        <p class="subtitle">Automate your job applications on Naukri.com</p>
+
+        <div class="warning-box">
+            <strong>⚠️ Important Notice:</strong> This is an automation script for educational purposes. Use responsibly and in accordance with Naukri.com's terms of service. Automated applications should be used for jobs you're genuinely interested in.
+        </div>
+
+        <div class="info-box">
+            <strong>ℹ️ How It Works:</strong> This script automatically clicks the "View" button to open the job application modal, then continuously applies to jobs by clicking the apply buttons every 3 seconds until no more jobs are available.
+        </div>
+
+        <div class="code-section">
+            <h2>📋 Auto Apply Script</h2>
+            <div class="code-box">
+                <button class="copy-btn" onclick="copyScript()">Copy Code</button>
+                <pre id="script-code">// Step 1: Click the initial "View" button to open the modal
+const viewButton = document.querySelector('#interested-btn');
+if (viewButton) {
+  viewButton.click();
+  console.log('%c🚀 Opened modal by clicking View button', 'color: green; font-weight: bold;');
+} else {
+  console.log('%c⚠️ View button not found — maybe modal is already open.', 'color: orange; font-weight: bold;');
+}
+
+let applyCount = 0;
+let intervalId = null;
+
+// Step 2: Run the apply logic every 3 seconds
+intervalId = setInterval(() => {
+  const bulkApplyButton = document.querySelector('button.btn-success[ng-click="applyBulk()"]');
+  const normalApplyButton = document.querySelector('.apply[ng-click*="submitChoice"] .new-btn');
+
+  if (bulkApplyButton && !bulkApplyButton.disabled) {
+    bulkApplyButton.click();
+    applyCount++;
+    console.log(`%c✅ [${applyCount}] Bulk Apply clicked at ${new Date().toLocaleTimeString()}`, 'color: blue');
+    return;
+  }
+
+  if (normalApplyButton) {
+    normalApplyButton.click();
+    applyCount++;
+    console.log(`%c✅ [${applyCount}] Normal Apply clicked at ${new Date().toLocaleTimeString()}`, 'color: teal');
+    return;
+  }
+
+  // If no apply buttons found — STOP
+  console.log('%c🎉 All jobs applied successfully!', 'color: limegreen; font-size: 16px; font-weight: bold;');
+  console.log(`%c🧾 Total Jobs Applied: ${applyCount}`, 'color: #2196F3; font-weight: bold;');
+  clearInterval(intervalId);
+}, 3000);</pre>
+            </div>
+        </div>
+
+        <div class="steps">
+            <h2 style="margin-bottom: 20px; color: #333;">📝 How to Use</h2>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Open Naukri.com</h3>
+                    <p>Navigate to <a href="https://www.naukri.com" target="_blank" style="color: #667eea;">Naukri.com</a> and log into your account. Go to the page where you can see job listings that you want to apply to.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Open Browser Console</h3>
+                    <p>Press <code>F12</code> (Windows/Linux) or <code>Cmd + Option + J</code> (Mac) to open the browser's Developer Console. Click on the <strong>Console</strong> tab.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Paste the Script</h3>
+                    <p>Copy the script above (click the "Copy Code" button) and paste it into the console. Press <code>Enter</code> to run it.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Watch It Work</h3>
+                    <p>The script will automatically click the view button, then start applying to jobs every 3 seconds. Watch the console for real-time logs showing progress.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Stop If Needed</h3>
+                    <p>To stop the script manually, type <code>clearInterval(intervalId)</code> in the console and press Enter.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast Application</h3>
+                <p>Applies every 3 seconds automatically</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>Real-time Tracking</h3>
+                <p>Console logs show progress</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Smart Detection</h3>
+                <p>Handles bulk & normal apply buttons</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🛑</div>
+                <h3>Auto-Stop</h3>
+                <p>Stops when all jobs are applied</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyScript() {
+            const code = document.getElementById('script-code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Copied!';
+                btn.classList.add('copied');
+
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                alert('Failed to copy. Please select and copy manually.');
+            });
+        }
+    </script>
+</body>
+</html>
